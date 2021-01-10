@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorter</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        *{
+            font-family: "poppins";
+        }
+    </style>
+</head>
+<body>
+    <div class='w3-center w3-topbar w3-border-blue w3-col l12 w3-padding-64 w3-xxxlarge w3-black'>
+        <b><span class='w3-padding-32 w3-col l12'>Smaller</span></b><br>
+        <span class='w3-large'>Instant URL shortener</span>
+    </div>
+
+    <div class='w3-row w3-padding'>
+        <div class='w3-col l4 s4 m4'>&nbsp;</div>
+        <div class='w3-col l4 s12 m4 w3-padding-64'>
+            <div class='w3-col l9 s9 m9'><input id='url' type="text" class='w3-input w3-border w3-border w3-padding-16' placeholder="Enter your URL here"></div>            
+            <div class='w3-col l3 s3 m3'><button id='go' class='w3-input w3-blue w3-padding-16'>GO</button></div>            
+        </div>
+        <div class='w3-col l4 s4 m4'>&nbsp;</div>
+    </div>
+    
+    <!--section for displaying shortened url starts-->
+    <div class="w3-col l12">
+        <div class="w3-col l4 w3-hide-small">&nbsp;</div>
+        <div class="w3-col l4" id='show'></div>
+        <div class="w3-col l4 w3-hide-small">&nbsp;</div>
+    </div>
+    <!--section for displaying shortened url ends-->
+    <script>
+        $("#go").click(function(){
+            var longurl=$("#url").val();
+            if(longurl!=""){
+                $.ajax({
+                    url:"main.php?url="+longurl,
+                    method:"GET",
+                    success:function(response){
+                        $("#show").html(response);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
